@@ -13,6 +13,7 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.Assert;
 import pojo.AddPlace;
 import pojo.LongLat;
+import resources.ApiResource;
 import resources.TestDataBuild;
 import resources.Utils;
 
@@ -31,6 +32,7 @@ public class StepDefinition extends Utils {
     Response response;
 
     TestDataBuild build = new TestDataBuild();
+    static String place_id;
 
 
 
@@ -47,20 +49,45 @@ public class StepDefinition extends Utils {
 
 
 
-    @When("User Call {string}")
-    public void user_call(String string) {
+    @When("User Call {string} with {string} http request")
+    public void user_call_with_http_request(String resource, String method) {
+
+        ApiResource resourceAPI = ApiResource.valueOf(resource);
         resSpec = new ResponseSpecBuilder().expectStatusCode(200).build();
-        response =res.when().post("/maps/api/place/add/json")
-                .then().spec(resSpec).extract().response();
+
+        if(method.equalsIgnoreCase("POST")) {
+            response = res.when().post(resourceAPI.getResource());
+        }
+        else if (method.equalsIgnoreCase("GET")) {
+            response = res.when().get(resourceAPI.getResource());
+        }
+        else if (method.equalsIgnoreCase("DELETE")) {
+            response = res.when().delete(resourceAPI.getResource());
+        }
+
     }
     @Then("Api Call is successful with status code {int}")
-    public void api_call_is_successful_with_status_code(Integer int1) {
+    public void api_call_is_successful_with_status_code(int int1) {
         Assert.assertEquals(response.getStatusCode(), int1);
     }
     @Then("{string} in Response Body is {string}")
     public void in_response_body_is(String key, String expectedValue) {
-        String placeResponse = response.asString();
-        JsonPath js = new JsonPath(placeResponse);
-        Assert.assertEquals(js.get(key).toString(), expectedValue);
+
+        Assert.assertEquals(getJsonPath(response, key), expectedValue);
+    }
+
+    @Then("Verify Place_Id created maps to {string} using {string}")
+    public void verify_place_id_created_maps_to_using(String expected, String resource) throws IOException {
+        place_id = getJsonPath(response, "place_id");
+        res = given().spec(requestSpecification()).queryParam("place_id", place_id);
+        user_call_with_http_request(resource, "GET");
+        String name = getJsonPath(response, "name");
+        Assert.assertEquals(name, expected);
+
+    }
+
+    @Given("Delete Place Payload")
+    public void delete_place_payload() throws IOException {
+        res = given().spec(requestSpecification()).body(build.deletePayload(place_id));
     }
 }
