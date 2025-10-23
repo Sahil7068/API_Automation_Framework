@@ -1,6 +1,6 @@
 Feature: Validation Place Apis
 
-@addPlace
+@addPlace @Regression
   Scenario Outline: Verify if Place is being successfully added
     Given Add Place Payload with "<name>" and "<phone_number>" and "<address>"
     When User Call "addPlaceAPI" with "POST" http request
@@ -15,7 +15,7 @@ Feature: Validation Place Apis
    # | house | 9876543210 | godda |
 
 
-  @deletePlace
+  @deletePlace @Regression
   Scenario:  Verify if Delete functionality is Working
     Given Delete Place Payload
     When User Call "deletePlaceAPI" with "POST" http request

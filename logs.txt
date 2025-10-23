@@ -12,7 +12,7 @@ Multiparts:		<none>
 Body:
 {"location":{"lat":-38.383494,"lng":33.427362},"accuracy":50,"name":"Framework","phone_number":"7807807809","address":"dumka","website":"http://google.com","types":["shoe park","shop"],"language":"French-IN"}
 HTTP/1.1 200 OK
-Date: Wed, 22 Oct 2025 16:20:51 GMT
+Date: Thu, 23 Oct 2025 08:12:54 GMT
 Server: Apache/2.4.52 (Ubuntu)
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: POST
@@ -25,17 +25,17 @@ Content-Type: application/json;charset=UTF-8
 
 {
     "status": "OK",
-    "place_id": "832b18c74b69be26c08fafc03dafd315",
+    "place_id": "f36c4f76f35aa9e1939c5fcec13e2898",
     "scope": "APP",
-    "reference": "48925ae3ce01e06fda6009644bf32de848925ae3ce01e06fda6009644bf32de8",
-    "id": "48925ae3ce01e06fda6009644bf32de8"
+    "reference": "655ca146aea548bc125b2d30adfeb809655ca146aea548bc125b2d30adfeb809",
+    "id": "655ca146aea548bc125b2d30adfeb809"
 }
 Request method:	GET
-Request URI:	https://rahulshettyacademy.com/maps/api/place/get/json?key=qaclick123&place_id=832b18c74b69be26c08fafc03dafd315
+Request URI:	https://rahulshettyacademy.com/maps/api/place/get/json?key=qaclick123&place_id=f36c4f76f35aa9e1939c5fcec13e2898
 Proxy:			<none>
 Request params:	<none>
 Query params:	key=qaclick123
-				place_id=832b18c74b69be26c08fafc03dafd315
+				place_id=f36c4f76f35aa9e1939c5fcec13e2898
 Form params:	<none>
 Path params:	<none>
 Headers:		Accept=*/*
@@ -43,7 +43,7 @@ Cookies:		<none>
 Multiparts:		<none>
 Body:			<none>
 HTTP/1.1 200 OK
-Date: Wed, 22 Oct 2025 16:20:53 GMT
+Date: Thu, 23 Oct 2025 08:12:57 GMT
 Server: Apache/2.4.52 (Ubuntu)
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: POST
@@ -66,4 +66,35 @@ Content-Type: application/json;charset=UTF-8
     "types": "shoe park,shop",
     "website": "http://google.com",
     "language": "French-IN"
+}
+Request method:	POST
+Request URI:	https://rahulshettyacademy.com/maps/api/place/delete/json?key=qaclick123
+Proxy:			<none>
+Request params:	<none>
+Query params:	key=qaclick123
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=text/plain; charset=ISO-8859-1
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "place_id":"f36c4f76f35aa9e1939c5fcec13e2898"
+}
+
+HTTP/1.1 200 OK
+Date: Thu, 23 Oct 2025 08:12:59 GMT
+Server: Apache/2.4.52 (Ubuntu)
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: POST
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With
+Content-Length: 15
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+
+{
+    "status": "OK"
 }
